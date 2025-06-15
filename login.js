@@ -15,7 +15,8 @@ function login() {
     alert("비밀번호가 일치하지 않습니다.");
   } else {
     alert("로그인 성공");
-    localStorage.setItem("loggedInUser", login_Id);  // 오타 수정: loggedInuser → loggedInUser
+    localStorage.setItem("loggedInUser", login_Id);
+    document.getElementById("user-id-display").textContent = `로그인한 ID: - ${localStorage.loggedInUser}`;
     location.href = "main.html";
   }
 }
