@@ -16,7 +16,6 @@ function login() {
   } else {
     alert("로그인 성공");
     localStorage.setItem("loggedInUser", login_Id);
-    document.getElementById("user-id-display").textContent = `로그인한 ID: - ${localStorage.loggedInUser}`;
     location.href = "main.html";
   }
 }
