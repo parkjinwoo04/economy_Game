@@ -1,4 +1,3 @@
-<!-- main.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,5 +63,17 @@
     <a class="button" href="realestate.html">🏠 부동산 투자</a>
     <a class="button" href="lotto.html">🎰 로또</a>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem("loggedInUser");
+      if (userId) {
+        document.getElementById("user-id-display").textContent = `로그인한 ID: ${userId}`;
+      } else {
+        alert("로그인이 필요합니다.");
+        location.href = "index.html";
+      }
+    });
+  </script>
 </body>
 </html>
