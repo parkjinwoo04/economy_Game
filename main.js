@@ -21,5 +21,5 @@ document.addEventListener("DOMContentLoaded", () => {
     currentDate += 1;
     localStorage.setItem("gameDate", currentDate);
     dateElement.textContent = `${currentDate}일`;
-  }, 60000);
+  }, 6000);
 });
