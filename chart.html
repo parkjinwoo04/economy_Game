@@ -40,24 +40,18 @@
     // 제목 표시
     document.getElementById("stock-title").textContent = `${stockName} 주식 차트`;
 
-    // 임시 가상 데이터 (일별 가격)
-    const dummyPrices = {
-      "A화학": [11000, 11300, 11200, 11500, 11400, 11650, 11800],
-      "B조선": [21000, 21200, 20800, 20700, 20900, 21100, 21500],
-      "C엔터": [31000, 31500, 31300, 31200, 31800, 32000, 32500],
-      "D항공": [41000, 41500, 41200, 41100, 40900, 40700, 40800],
-      "E바이오": [51000, 51500, 52000, 52200, 52100, 52300, 52500],
-      "F의약": [61000, 60500, 60300, 60800, 61000, 61200, 61500]
-    };
+    // 초기 10일 라벨 (1일부터 10일까지)
+    let dayLabels = Array.from({length: 10}, (_, i) => i + 1);
 
-    // 차트 그리기
+    // 임시 데이터 (랜덤 생성)
+    let prices = dayLabels.map(() => Math.floor(Math.random() * 1000) + 10000);
+
     const ctx = document.getElementById('stockChart').getContext('2d');
-    const prices = dummyPrices[stockName] || [0,0,0,0,0,0,0];
 
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['월', '화', '수', '목', '금', '토', '일'],
+        labels: dayLabels,
         datasets: [{
           label: `${stockName} 가격 (₩)`,
           data: prices,
@@ -71,10 +65,38 @@
         scales: {
           y: {
             beginAtZero: false
+          },
+          x: {
+            title: {
+              display: true,
+              text: '일수'
+            }
           }
         }
       }
     });
+
+    // 1분마다 차트 업데이트 (테스트용으로 5초로 설정, 실제론 60000으로 바꾸세요)
+    setInterval(() => {
+      // 새 날 추가 (마지막 일수 +1)
+      const newDay = dayLabels[dayLabels.length - 1] + 1;
+
+      // 맨 앞 일수 제거, 새 일수 추가
+      dayLabels.shift();
+      dayLabels.push(newDay);
+
+      // 가격 데이터도 밀어내고 새 랜덤값 추가 (변화폭 ±300 정도)
+      prices.shift();
+      const lastPrice = prices[prices.length - 1];
+      const change = Math.floor(Math.random() * 601) - 300; // -300 ~ +300
+      const newPrice = Math.max(1, lastPrice + change);
+      prices.push(newPrice);
+
+      // 차트 데이터 갱신
+      chart.data.labels = dayLabels;
+      chart.data.datasets[0].data = prices;
+      chart.update();
+    }, 5000); // 5초마다 업데이트 (테스트용)
   </script>
 </body>
 </html>
