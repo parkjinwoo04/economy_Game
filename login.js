@@ -40,7 +40,6 @@ function create_user() {
 
   localStorage.setItem(login_Id, login_Pw);
   alert("회원가입이 완료되었습니다.");
-  console.log(localStorage.getItem(login_Id));
   location.href = "index.html";
 }
 
