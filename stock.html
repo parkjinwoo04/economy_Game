@@ -30,6 +30,40 @@
       cursor: pointer;
       text-decoration: none;
     }
+    .stock-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .stock-card {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .stock-card h3 {
+      margin: 0.5rem 0;
+    }
+    .stock-card button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .buy-btn {
+      background-color: #3498db;
+      color: white;
+    }
+    .sell-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -38,6 +72,51 @@
   </header>
   <main>
     <p>이곳에서 다양한 주식에 투자할 수 있습니다.</p>
+
+    <div class="stock-list">
+      <div class="stock-card">
+        <h3>A화학</h3>
+        <p>현재가: ₩1,000</p>
+        <button class="buy-btn" data-stock="A화학">매수</button>
+        <button class="sell-btn" data-stock="A화학">매도</button>
+      </div>
+
+      <div class="stock-card">
+        <h3>B조선</h3>
+        <p>현재가: ₩2,000</p>
+        <button class="buy-btn" data-stock="B조선">매수</button>
+        <button class="sell-btn" data-stock="B조선">매도</button>
+      </div>
+
+      <div class="stock-card">
+        <h3>C엔터</h3>
+        <p>현재가: ₩1,500</p>
+        <button class="buy-btn" data-stock="C엔터">매수</button>
+        <button class="sell-btn" data-stock="C엔터">매도</button>
+      </div>
+
+      <div class="stock-card">
+        <h3>D항공</h3>
+        <p>현재가: ₩1,200</p>
+        <button class="buy-btn" data-stock="D항공">매수</button>
+        <button class="sell-btn" data-stock="D항공">매도</button>
+      </div>
+
+      <div class="stock-card">
+        <h3>E바이오</h3>
+        <p>현재가: ₩1,800</p>
+        <button class="buy-btn" data-stock="E바이오">매수</button>
+        <button class="sell-btn" data-stock="E바이오">매도</button>
+      </div>
+
+      <div class="stock-card">
+        <h3>F의약</h3>
+        <p>현재가: ₩2,200</p>
+        <button class="buy-btn" data-stock="F의약">매수</button>
+        <button class="sell-btn" data-stock="F의약">매도</button>
+      </div>
+    </div>
+
     <a href="main.html" class="button">🏠 메인으로</a>
   </main>
 </body>
