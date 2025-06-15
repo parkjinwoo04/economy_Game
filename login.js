@@ -5,7 +5,7 @@ const login_rPw = document.getElementById("r_pw").value;
 
 
 function login() {
-  const saved_Pw = localStorage.hetItem(login_Id);
+  const saved_Pw = localStorage.getItem(login_Id);
   
   if (login_Id === "" || login_Pw === "") {
     alert ("아이디와 비밀번호를 입력해주세요");
@@ -16,7 +16,7 @@ function login() {
     alert ("비밀번호가 일치하지 않습니다.");
   } else {
     alert ("로그인 성공");
-    localStorage.setItem("loggedInuser", id);
+    localStorage.setItem("loggedInuser", login_Id);
   }
 }
 
@@ -35,7 +35,7 @@ function create_user {
   }
   localStorage.setItem(login_Id, login_Pw);
   alert ("회원가입이 완료되었습니다.");
-  location,href = "index.html";
+  location.href = "index.html";
 }
 
 function back() {
