@@ -4,8 +4,15 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const userId = localStorage.getItem("loggedInUser");
-  document.getElementById("user-id-display").textContent = `로그인한 ID : ${userId}`;
+
+  if (userId) {
+    document.getElementById("user-id-display").textContent = `로그인한 ID: ${userId}`;
+  } else {
+    alert("로그인이 필요합니다.");
+    window.location.href = "index.html"; // 로그인 페이지로 이동
+  }
 });
+
 
 
 
