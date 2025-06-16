@@ -1,7 +1,6 @@
 function login() {
   const login_Id = document.getElementById("id").value.trim();
   const login_Pw = document.getElementById("pw").value.trim();
-  const userInfo = ["test123", "pw123", 100000, 1];
 
   if (login_Id === "" || login_Pw === "") {
     alert("아이디와 비밀번호를 입력해주세요");
