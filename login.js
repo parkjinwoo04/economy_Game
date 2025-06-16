@@ -1,6 +1,7 @@
 function login() {
   const login_Id = document.getElementById("id").value.trim();
   const login_Pw = document.getElementById("pw").value.trim();
+  const userInfo = ["test123", "pw123", 100000, 1];
 
   if (login_Id === "" || login_Pw === "") {
     alert("아이디와 비밀번호를 입력해주세요");
@@ -24,6 +25,7 @@ function create_user() {
   const login_Id = document.getElementById("id").value.trim();
   const login_Pw = document.getElementById("pw").value.trim();
   const login_rPw = document.getElementById("r_pw").value.trim();
+  const usetInfo = [];
 
   if (login_Id === "" || login_Pw === "") {
     alert("아이디와 비밀번호를 입력해주세요");
@@ -40,6 +42,7 @@ function create_user() {
 
   localStorage.setItem(login_Id, login_Pw);
   alert("회원가입이 완료되었습니다.");
+  userInfo.push([login_Id, login_Pw, 1000000, 1]);
   location.href = "index.html";
 }
 
