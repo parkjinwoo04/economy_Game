@@ -1,3 +1,7 @@
+function getUserIndex(userInfo, id) {
+  return userInfo.findIndex(user => user[0] === id);
+}
+
 function login() {
   const login_Id = document.getElementById("id").value.trim();
   const login_Pw = document.getElementById("pw").value.trim();
@@ -24,7 +28,7 @@ function create_user() {
   const login_Id = document.getElementById("id").value.trim();
   const login_Pw = document.getElementById("pw").value.trim();
   const login_rPw = document.getElementById("r_pw").value.trim();
-  const usetInfo = [];
+  const userInfo = [];
 
   if (login_Id === "" || login_Pw === "") {
     alert("아이디와 비밀번호를 입력해주세요");
