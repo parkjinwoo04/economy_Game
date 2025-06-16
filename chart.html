@@ -7,96 +7,57 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      padding: 1rem;
+      background-color: #f9f9f9;
+      padding: 2rem;
+      margin: 0;
       text-align: center;
     }
-    #chart-container {
-      max-width: 700px;
-      margin: 0 auto;
+
+    h1 {
+      color: #333;
+      margin-bottom: 1rem;
     }
-    a.button {
+
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    canvas {
+      max-width: 100%;
+    }
+
+    .button {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
       background-color: #4CAF50;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-  <h1 id="stock-title">차트 로딩 중...</h1>
+
+  <h1 id="stock-title">주식 차트</h1>
+
   <div id="chart-container">
     <canvas id="stockChart"></canvas>
   </div>
+
   <a class="button" href="stock.html">⬅️ 주식 목록으로</a>
 
-  <script>
-    // 쿼리스트링에서 stock 이름 가져오기
-    const params = new URLSearchParams(window.location.search);
-    const stockName = params.get("stock") || "알 수 없는 종목";
-
-    // 제목 표시
-    document.getElementById("stock-title").textContent = `${stockName} 주식 차트`;
-
-    // 초기 10일 라벨 (1일부터 10일까지)
-    let dayLabels = Array.from({length: 10}, (_, i) => i + 1);
-
-    // 임시 데이터 (랜덤 생성)
-    let prices = dayLabels.map(() => Math.floor(Math.random() * 1000) + 10000);
-
-    const ctx = document.getElementById('stockChart').getContext('2d');
-
-    const chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: dayLabels,
-        datasets: [{
-          label: `${stockName} 가격 (₩)`,
-          data: prices,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          fill: false,
-          tension: 0.1,
-          pointRadius: 5
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: false
-          },
-          x: {
-            title: {
-              display: true,
-              text: '일수'
-            }
-          }
-        }
-      }
-    });
-
-    // 1분마다 차트 업데이트 (테스트용으로 5초로 설정, 실제론 60000으로 바꾸세요)
-    setInterval(() => {
-      // 새 날 추가 (마지막 일수 +1)
-      const newDay = dayLabels[dayLabels.length - 1] + 1;
-
-      // 맨 앞 일수 제거, 새 일수 추가
-      dayLabels.shift();
-      dayLabels.push(newDay);
-
-      // 가격 데이터도 밀어내고 새 랜덤값 추가 (변화폭 ±300 정도)
-      prices.shift();
-      const lastPrice = prices[prices.length - 1];
-      const change = Math.floor(Math.random() * 601) - 300; // -300 ~ +300
-      const newPrice = Math.max(1, lastPrice + change);
-      prices.push(newPrice);
-
-      // 차트 데이터 갱신
-      chart.data.labels = dayLabels;
-      chart.data.datasets[0].data = prices;
-      chart.update();
-    }, 5000); // 5초마다 업데이트 (테스트용)
-  </script>
 </body>
 </html>
