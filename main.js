@@ -2,7 +2,7 @@
 
 // 로그인한 사용자 아이디 가져오기
 
-document.addEventListener("DOMcontentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const userId = localStorage.getItem("loggedInUser");
   document.getElementById("user-id-display").textContent = `로그인한 ID : ${userId}`;
 });
